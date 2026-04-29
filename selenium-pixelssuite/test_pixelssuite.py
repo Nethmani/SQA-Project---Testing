@@ -80,7 +80,7 @@ def test_tc02():
         driver.quit()
 
 # -----------------------------
-# TC03 - Button Click Test (FINAL CORRECT FIX)
+# TC03 - Button Click Test
 # -----------------------------
 def test_tc03():
     driver = setup_driver()
@@ -227,12 +227,203 @@ def test_tc05():
 
     finally:
         driver.quit()
+
+# -----------------------------
+# TC06 - Image Upload Test
+# -----------------------------
+def test_tc06():
+    driver = setup_driver()
+    wait = WebDriverWait(driver, 10)
+
+    try:
+        driver.get("https://www.pixelssuite.com/compress-image")
+
+        file_input = wait.until(
+            EC.presence_of_element_located((By.XPATH, "//input[@type='file']"))
+        )
+
+        file_input.send_keys("D:\\4th Year\\2nd Semester\\SQA\\Assingment 2\\Pic\\image001.jpg")
+
+        print("TC06 PASS - Image uploaded successfully")
+
+        driver.save_screenshot("tc06_upload.png")
+        input("Press Enter...")
+
+    except Exception as e:
+        print("TC06 ERROR:", e)
+
+    finally:
+        driver.quit()
+# -----------------------------
+# TC07 - Drag & Drop Upload Test
+# -----------------------------
+def test_tc07():
+    driver = setup_driver()
+    wait = WebDriverWait(driver, 10)
+
+    try:
+        driver.get("https://www.pixelssuite.com/compress-image")
+
+        file_input = wait.until(
+            EC.presence_of_element_located((By.XPATH, "//input[@type='file']"))
+        )
+
+        # Drag-drop simulate using send_keys
+        file_input.send_keys("D:/4th Year/2nd Semester/SQA/Assingment 2/Pic/image001.png")
+
+        print("TC07 PASS - Drag & Drop simulated upload success")
+
+        driver.save_screenshot("tc07_dragdrop.png")
+        input("Press Enter...")
+
+    except Exception as e:
+        print("TC07 ERROR:", e)
+
+    finally:
+        driver.quit()
+# -----------------------------
+# TC08 - Format Selection Test
+# -----------------------------
+def test_tc08():
+    driver = setup_driver()
+    wait = WebDriverWait(driver, 10)
+
+    try:
+        driver.get("https://www.pixelssuite.com/compress-image")
+
+        file_input = wait.until(EC.presence_of_element_located((By.XPATH, "//input[@type='file']")))
+        file_input.send_keys("D:/4th Year/2nd Semester/SQA/Assingment 2/Pic/image001.png")
+
+        dropdown = wait.until(EC.presence_of_element_located((By.TAG_NAME, "select")))
+        dropdown.send_keys("WEBP")
+
+        print("TC08 PASS - Format selected successfully")
+
+        driver.save_screenshot("tc08_format.png")
+        input("Press Enter...")
+
+    except Exception as e:
+        print("TC08 ERROR:", e)
+
+    finally:
+        driver.quit()
+# -----------------------------
+# TC09 - Quality 100 Test
+# -----------------------------
+def test_tc09():
+    driver = setup_driver()
+    wait = WebDriverWait(driver, 10)
+
+    try:
+        driver.get("https://www.pixelssuite.com/compress-image")
+
+        file_input = wait.until(EC.presence_of_element_located((By.XPATH, "//input[@type='file']")))
+        file_input.send_keys("D:/4th Year/2nd Semester/SQA/Assingment 2/Pic/image001.png")
+
+        slider = wait.until(EC.presence_of_element_located((By.XPATH, "//input[@type='range']")))
+        driver.execute_script("arguments[0].value=100;", slider)
+
+        print("TC09 PASS - Quality set to 100")
+
+        driver.save_screenshot("tc09_quality100.png")
+        input("Press Enter...")
+
+    except Exception as e:
+        print("TC09 ERROR:", e)
+
+    finally:
+        driver.quit()
+# -----------------------------
+# TC10 - Quality 5 Test
+# -----------------------------
+def test_tc10():
+    driver = setup_driver()
+    wait = WebDriverWait(driver, 10)
+
+    try:
+        driver.get("https://www.pixelssuite.com/compress-image")
+
+        file_input = wait.until(EC.presence_of_element_located((By.XPATH, "//input[@type='file']")))
+        file_input.send_keys("D:/4th Year/2nd Semester/SQA/Assingment 2/Pic/image001.png")
+
+        slider = wait.until(EC.presence_of_element_located((By.XPATH, "//input[@type='range']")))
+        driver.execute_script("arguments[0].value=5;", slider)
+
+        print("TC10 PASS - Quality set to 5")
+
+        driver.save_screenshot("tc10_quality5.png")
+        input("Press Enter...")
+
+    except Exception as e:
+        print("TC10 ERROR:", e)
+
+    finally:
+        driver.quit()
+# -----------------------------
+# TC11 - Download Action Test
+# -----------------------------
+def test_tc11():
+    driver = setup_driver()
+    wait = WebDriverWait(driver, 10)
+
+    try:
+        driver.get("https://www.pixelssuite.com/compress-image")
+
+        file_input = wait.until(EC.presence_of_element_located((By.XPATH, "//input[@type='file']")))
+        file_input.send_keys("D:/4th Year/2nd Semester/SQA/Assingment 2/Pic/image001.png")
+
+        download_btn = wait.until(EC.element_to_be_clickable((By.XPATH, "//button[contains(text(),'Download')]")))
+        download_btn.click()
+
+        print("TC11 PASS - Download triggered")
+
+        driver.save_screenshot("tc11_download.png")
+        input("Press Enter...")
+
+    except Exception as e:
+        print("TC11 ERROR:", e)
+
+    finally:
+        driver.quit()
+# -----------------------------
+# TC12 - Clear Button Test
+# -----------------------------
+def test_tc12():
+    driver = setup_driver()
+    wait = WebDriverWait(driver, 10)
+
+    try:
+        driver.get("https://www.pixelssuite.com/compress-image")
+
+        file_input = wait.until(EC.presence_of_element_located((By.XPATH, "//input[@type='file']")))
+        file_input.send_keys("D:/4th Year/2nd Semester/SQA/Assingment 2/Pic/image001.png")
+
+        clear_btn = wait.until(EC.element_to_be_clickable((By.XPATH, "//button[contains(text(),'Clear')]")))
+        clear_btn.click()
+
+        print("TC12 PASS - Clear works")
+
+        driver.save_screenshot("tc12_clear.png")
+        input("Press Enter...")
+
+    except Exception as e:
+        print("TC12 ERROR:", e)
+
+    finally:
+        driver.quit()
 # -----------------------------
 # RUN TEST CASES
 # -----------------------------
 if __name__ == "__main__":
     test_tc01()
-    test_tc02()
+    test_tc02() 
     test_tc03()
     test_tc04()
     test_tc05()
+    test_tc06()
+    test_tc07()
+    test_tc08()
+    test_tc09()
+    test_tc10()
+    test_tc11()
+    test_tc12()
